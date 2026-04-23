@@ -211,7 +211,6 @@ export default function Dashboard() {
                   <Tooltip />
                   <Legend />
                   <Line type="monotone" dataKey="users" stroke={colors[0]} strokeWidth={2} dot={false} name="Používatelia" />
-                  <Line type="monotone" dataKey="sessions" stroke={colors[2]} strokeWidth={2} dot={false} name="Relácie" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
