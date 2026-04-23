@@ -6,6 +6,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
 import { format, parse } from 'date-fns';
+import { properties, defaultPropertyId } from '@/lib/properties';
 
 const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd'];
 
@@ -108,12 +109,13 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [days, setDays] = useState('30');
+  const [propertyId, setPropertyId] = useState(defaultPropertyId);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/analytics?days=${days}`);
+      const res = await fetch(`/api/analytics?days=${days}&propertyId=${propertyId}`);
       const json = await res.json();
       if (json.error) throw new Error(json.error);
       setData(json);
@@ -124,7 +126,7 @@ export default function Dashboard() {
     }
   }, [days]);
 
-  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => { fetchData(); }, [fetchData, propertyId]);
 
   const dailyFormatted = data?.daily.map((d) => ({
     ...d,
@@ -134,11 +136,20 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-100 px-5 py-4 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div>
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="flex-1">
             <h1 className="text-xl font-bold text-gray-900">Analytics Dashboard</h1>
             <p className="text-xs text-gray-400">Google Analytics 4</p>
           </div>
+          <select
+            value={propertyId}
+            onChange={(e) => setPropertyId(e.target.value)}
+            className="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 text-gray-700 border-0 cursor-pointer hover:bg-gray-200 transition-colors"
+          >
+            {properties.map((p) => (
+              <option key={p.id} value={p.id}>{p.name}</option>
+            ))}
+          </select>
           <div className="flex gap-2">
             {['7', '30', '90'].map((d) => (
               <button

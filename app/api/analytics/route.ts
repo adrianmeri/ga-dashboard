@@ -1,5 +1,6 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { NextResponse } from 'next/server';
+import { properties } from '@/lib/properties';
 
 const analyticsClient = new BetaAnalyticsDataClient({
   credentials: {
@@ -8,11 +9,13 @@ const analyticsClient = new BetaAnalyticsDataClient({
   },
 });
 
-const propertyId = process.env.GA_PROPERTY_ID!;
+const allowedIds = new Set(properties.map(p => p.id));
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const days = searchParams.get('days') || '30';
+  const requestedId = searchParams.get('propertyId') || properties[0].id;
+  const propertyId = allowedIds.has(requestedId) ? requestedId : properties[0].id;
 
   try {
     const n = parseInt(days);
