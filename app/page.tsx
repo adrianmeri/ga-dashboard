@@ -8,7 +8,7 @@ import {
 import { format, parse } from 'date-fns';
 import { properties, defaultPropertyId } from '@/lib/properties';
 
-const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd'];
+const FALLBACK_COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd'];
 
 interface OverviewBase {
   activeUsers: string;
@@ -111,6 +111,8 @@ export default function Dashboard() {
   const [days, setDays] = useState('30');
   const [propertyId, setPropertyId] = useState(defaultPropertyId);
 
+  const colors = properties.find(p => p.id === propertyId)?.colors ?? FALLBACK_COLORS;
+
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -208,8 +210,8 @@ export default function Dashboard() {
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="users" stroke="#6366f1" strokeWidth={2} dot={false} name="Používatelia" />
-                  <Line type="monotone" dataKey="sessions" stroke="#a78bfa" strokeWidth={2} dot={false} name="Relácie" />
+                  <Line type="monotone" dataKey="users" stroke={colors[0]} strokeWidth={2} dot={false} name="Používatelia" />
+                  <Line type="monotone" dataKey="sessions" stroke={colors[2]} strokeWidth={2} dot={false} name="Relácie" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -232,7 +234,7 @@ export default function Dashboard() {
                       labelLine={false}
                     >
                       {data.devices.map((_, i) => (
-                        <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                        <Cell key={i} fill={colors[i % colors.length]} />
                       ))}
                     </Pie>
                     <Tooltip />
@@ -248,7 +250,7 @@ export default function Dashboard() {
                     <XAxis type="number" tick={{ fontSize: 11 }} />
                     <YAxis dataKey="city" type="category" tick={{ fontSize: 11 }} width={80} />
                     <Tooltip />
-                    <Bar dataKey="users" fill="#6366f1" radius={[0, 4, 4, 0]} name="Používatelia" />
+                    <Bar dataKey="users" fill={colors[0]} radius={[0, 4, 4, 0]} name="Používatelia" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
