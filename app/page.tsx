@@ -124,9 +124,9 @@ export default function Dashboard() {
     } finally {
       setLoading(false);
     }
-  }, [days]);
+  }, [days, propertyId]);
 
-  useEffect(() => { fetchData(); }, [fetchData, propertyId]);
+  useEffect(() => { fetchData(); }, [fetchData]);
 
   const dailyFormatted = data?.daily.map((d) => ({
     ...d,
