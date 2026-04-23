@@ -268,7 +268,8 @@ export default function Dashboard() {
                         <p className="text-sm text-gray-700 truncate">{p.page}</p>
                         <div className="h-1.5 bg-gray-100 rounded-full mt-1">
                           <div
-                            className="h-1.5 bg-indigo-500 rounded-full"
+                            className="h-1.5 rounded-full"
+                            style={{ backgroundColor: colors[0] }}
                             style={{ width: `${(p.views / maxViews) * 100}%` }}
                           />
                         </div>
