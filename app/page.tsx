@@ -269,8 +269,7 @@ export default function Dashboard() {
                         <div className="h-1.5 bg-gray-100 rounded-full mt-1">
                           <div
                             className="h-1.5 rounded-full"
-                            style={{ backgroundColor: colors[0] }}
-                            style={{ width: `${(p.views / maxViews) * 100}%` }}
+                            style={{ backgroundColor: colors[0], width: `${(p.views / maxViews) * 100}%` }}
                           />
                         </div>
                       </div>
