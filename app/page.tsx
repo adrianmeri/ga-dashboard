@@ -202,7 +202,7 @@ export default function Dashboard() {
             </div>
 
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-              <h2 className="text-sm font-semibold text-gray-700 mb-4">Návštevníci & relácie</h2>
+              <h2 className="text-sm font-semibold text-gray-700 mb-4">Používatelia</h2>
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={dailyFormatted}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
