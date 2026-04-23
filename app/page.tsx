@@ -206,8 +206,8 @@ export default function Dashboard() {
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={dailyFormatted}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} interval="preserveStartEnd" />
-                  <YAxis tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#9ca3af' }} interval="preserveStartEnd" />
+                  <YAxis tick={{ fontSize: 11, fill: '#9ca3af' }} />
                   <Tooltip />
                   <Legend />
                   <Line type="monotone" dataKey="users" stroke={colors[0]} strokeWidth={2} dot={false} name="Používatelia" />
@@ -247,8 +247,8 @@ export default function Dashboard() {
                 <ResponsiveContainer width="100%" height={180}>
                   <BarChart data={data.cities} layout="vertical">
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis type="number" tick={{ fontSize: 11 }} />
-                    <YAxis dataKey="city" type="category" tick={{ fontSize: 11 }} width={80} />
+                    <XAxis type="number" tick={{ fontSize: 11, fill: '#9ca3af' }} />
+                    <YAxis dataKey="city" type="category" tick={{ fontSize: 11, fill: '#6b7280' }} width={80} />
                     <Tooltip />
                     <Bar dataKey="users" fill={colors[0]} radius={[0, 4, 4, 0]} name="Používatelia" />
                   </BarChart>
