@@ -219,15 +219,15 @@ export default function Dashboard() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <h2 className="text-sm font-semibold text-gray-700 mb-4">Zariadenia</h2>
-                <ResponsiveContainer width="100%" height={180}>
+                <ResponsiveContainer width="100%" height={220}>
                   <PieChart>
                     <Pie
                       data={data.devices}
                       dataKey="sessions"
                       nameKey="device"
                       cx="50%"
-                      cy="50%"
-                      outerRadius={70}
+                      cy="55%"
+                      outerRadius={65}
                       label={({ name, percent }) =>
                         `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                       }
@@ -244,8 +244,8 @@ export default function Dashboard() {
 
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <h2 className="text-sm font-semibold text-gray-700 mb-4">Top mestá</h2>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={data.cities} layout="vertical" margin={{ top: 12, right: 8, bottom: 0, left: 0 }}>
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={data.cities} layout="vertical" margin={{ top: 16, right: 8, bottom: 0, left: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                     <XAxis type="number" tick={{ fontSize: 11, fill: '#9ca3af' }} />
                     <YAxis dataKey="city" type="category" tick={{ fontSize: 11, fill: '#6b7280' }} width={80} />
