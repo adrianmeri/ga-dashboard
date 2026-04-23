@@ -192,10 +192,8 @@ export default function Dashboard() {
           </div>
         ) : data ? (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard label="Aktívni používatelia" value={parseInt(data.overview.activeUsers).toLocaleString()} current={data.overview.activeUsers} prev={data.overview.prev.activeUsers} />
-              <StatCard label="Nových používateľov" value={parseInt(data.overview.newUsers).toLocaleString()} current={data.overview.newUsers} prev={data.overview.prev.newUsers} />
-              <StatCard label="Relácie" value={parseInt(data.overview.sessions).toLocaleString()} current={data.overview.sessions} prev={data.overview.prev.sessions} />
               <StatCard label="Zobrazenia stránok" value={parseInt(data.overview.pageViews).toLocaleString()} current={data.overview.pageViews} prev={data.overview.prev.pageViews} />
               <StatCard label="Bounce rate" value={`${(parseFloat(data.overview.bounceRate) * 100).toFixed(1)}%`} current={data.overview.bounceRate} prev={data.overview.prev.bounceRate} invertTrend />
               <StatCard label="Priem. trvanie relácie" value={formatDuration(data.overview.avgSessionDuration)} current={data.overview.avgSessionDuration} prev={data.overview.prev.avgSessionDuration} />
